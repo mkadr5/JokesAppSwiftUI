@@ -8,14 +8,24 @@
 import SwiftUI
 
 struct ContentView: View {
+    @ObservedObject var jokesVM = JokesViewModel()
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        NavigationView{
+            List(jokesVM.jokes){element in
+                Text(element.joke)
+            }.toolbar(content: {
+                Button {
+                    addJoke()
+                } label: {
+                    Text("Get New Joke")
+                }
+
+            })
+            .navigationTitle(Text("Jokes App"))
         }
-        .padding()
+    }
+    func addJoke() {
+        // API KALDIRILDIĞI İÇİN YENİ KAYIT EKLEYEMİYORUZ
     }
 }
 
